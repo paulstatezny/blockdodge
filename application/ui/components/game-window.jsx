@@ -8,7 +8,7 @@ var GameLoopMixin      = require('./game-loop-mixin');
 var KeyboardInputMixin = require('./keyboard-input-mixin');
 var _                  = require('underscore');
 
-var OFF_SCREEN = 610;
+var WINDOW_SIZE = 600;
 
 module.exports = React.createClass({
 
@@ -19,7 +19,7 @@ module.exports = React.createClass({
     generateBlocks : function()
     {
         return [
-            {x: 500, y: 100},
+            {x: 300, y: 370},
             {x: 200, y: 1200},
             {x: 100, y: 1800},
             {x: 50, y: 2400}
@@ -37,15 +37,16 @@ module.exports = React.createClass({
         var self   = this;
 
         _.each(this.state.blocks, function(block, index) {
-            if ((self.state.playerYPosition - block.y) > OFF_SCREEN) {
+            if ((self.state.playerYPosition - block.y) > WINDOW_SIZE) {
                 return;
             }
+
 
             blocks.push(
                 <Block
                     key       = {'block-' + index}
                     xPosition = {block.x}
-                    yPosition = {self.state.playerYPosition - block.y}
+                    yPosition = {self.state.playerYPosition - block.y + WINDOW_SIZE}
                 />
             );
         });

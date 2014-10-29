@@ -4,7 +4,7 @@
 var _         = require('underscore');
 var direction = require('./direction');
 
-var FRAME_LENGTH = 30;
+var FRAME_LENGTH = 60;
 var MAX_POSITION = 560;
 var XVELOCITY    = 15;
 var YVELOCITY    = 10;
@@ -21,7 +21,7 @@ module.exports = {
 
     incrementFrame : function()
     {
-        if (this.playerCollidedWithABlock === true) {
+        if (this.playerCollidedWithABlock() === true) {
             this.setGameLost();
         }
 
@@ -46,8 +46,7 @@ module.exports = {
         if (this.state.playerXPosition < block.x + BLOCK_SIZE &&
             this.state.playerXPosition + PLAYER_SIZE > block.x &&
             this.state.playerYPosition < block.y + BLOCK_SIZE &&
-            PLAYER_SIZE + this.state.playerYPosition > block.y) {
-            console.log('collision');
+            this.state.playerYPosition + PLAYER_SIZE > block.y) {
             return true;
         }
     },
