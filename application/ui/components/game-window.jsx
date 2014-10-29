@@ -19,6 +19,9 @@ var direction = {
     RIGHT : 1
 };
 
+var VELOCITY     = 1;
+var MAX_POSITION = 500;
+
 module.exports = React.createClass({
 
     displayName : 'GameWindow',
@@ -52,9 +55,15 @@ module.exports = React.createClass({
         }
 
         if (e.keyCode === keys.LEFT) {
-            this.setState({direction : direction.LEFT});
+            this.setState({
+                direction       : direction.LEFT,
+                playerXPosition : this.getNewPlayerPosition(direction.LEFT)
+            });
         } else if (e.keyCode === keys.RIGHT) {
-            this.setState({direction : direction.RIGHT});
+            this.setState({
+                direction       : direction.RIGHT,
+                playerXPosition : this.getNewPlayerPosition(direction.RIGHT)
+            });
         } else if (e.keyCode === keys.SPACE && this.state.playing === false) {
             this.setState({playing : true});
         } else if (e.keyCode === keys.SPACE && this.state.playing === true) {
@@ -74,6 +83,15 @@ module.exports = React.createClass({
             this.setState({direction : null});
         } else if (e.keyCode === keys.RIGHT && this.state.direction === direction.RIGHT) {
             this.setState({direction : null});
+        }
+    },
+
+    getNewPlayerPosition : function(dir)
+    {
+        if (dir === direction.RIGHT && this.state.playerXPosition < MAX_POSITION) {
+            return this.state.playerXPosition + VELOCITY;
+        } else if (dir === direction.LEFT && this.state.playerXPosition > 0) {
+            return this.state.playerXPosition - VELOCITY;
         }
     },
 
