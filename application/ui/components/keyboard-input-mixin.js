@@ -40,20 +40,18 @@ module.exports = {
             return;
         }
 
-        if (e.keyCode === keys.LEFT) {
-            this.setState({
-                direction       : direction.LEFT,
-                playerXPosition : this.getNewPlayerPosition(direction.LEFT)
-            });
-        } else if (e.keyCode === keys.RIGHT) {
-            this.setState({
-                direction       : direction.RIGHT,
-                playerXPosition : this.getNewPlayerPosition(direction.RIGHT)
-            });
-        } else if (e.keyCode === keys.SPACE && this.state.playing === false) {
-            this.setState({playing : true});
+        if (e.keyCode === keys.SPACE && this.state.playing === false) {
+            this.startGame();
         } else if (e.keyCode === keys.SPACE && this.state.playing === true) {
-            this.setState({playing : false});
+            this.resetGame();
+        } else if (this.state.playing === false) {
+            return;
+        }
+
+        if (e.keyCode === keys.LEFT) {
+            this.setDirection(direction.LEFT);
+        } else if (e.keyCode === keys.RIGHT) {
+            this.setDirection(direction.RIGHT);
         }
     },
 
@@ -66,9 +64,26 @@ module.exports = {
         }
 
         if (e.keyCode === keys.LEFT && this.state.direction === direction.LEFT) {
-            this.setState({direction : null});
+            this.setDirection(null);
         } else if (e.keyCode === keys.RIGHT && this.state.direction === direction.RIGHT) {
-            this.setState({direction : null});
+            this.setDirection(null);
         }
+    },
+
+    startGame : function()
+    {
+        this.setState({playing : true});
+    },
+
+    resetGame : function()
+    {
+        this.setState(this.getInitialState());
+    },
+
+    setDirection : function (direction)
+    {
+        this.setState({
+            direction : direction
+        });
     }
 };

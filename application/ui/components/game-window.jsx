@@ -57,6 +57,8 @@ module.exports = React.createClass({
                 </div>
                 <p>
                     Playing : {this.state.playing ? 'true' : 'false'}
+                    <br />
+                    Direction : {this.state.direction}
                 </p>
             </div>
         );

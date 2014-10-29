@@ -9,15 +9,6 @@ var MAX_POSITION = 500;
 var VELOCITY     = 1;
 
 module.exports = {
-    getNewPlayerPosition : function(dir)
-    {
-        if (dir === direction.RIGHT && this.state.playerXPosition < MAX_POSITION) {
-            return this.state.playerXPosition + VELOCITY;
-        } else if (dir === direction.LEFT && this.state.playerXPosition > 0) {
-            return this.state.playerXPosition - VELOCITY;
-        }
-    },
-
     componentDidUpdate : function()
     {
         if (this.state.playing) {
@@ -30,6 +21,15 @@ module.exports = {
         this.setState({
             playerYPosition : this.getNewPlayerPosition(this.state.direction)
         });
+    },
+
+    getNewPlayerPosition : function(dir)
+    {
+        if (dir === direction.RIGHT && this.state.playerXPosition < MAX_POSITION) {
+            return this.state.playerXPosition + VELOCITY;
+        } else if (dir === direction.LEFT && this.state.playerXPosition > 0) {
+            return this.state.playerXPosition - VELOCITY;
+        }
     },
 
     getInitialState : function()
