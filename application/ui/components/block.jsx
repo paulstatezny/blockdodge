@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React = require('react');
+var React      = require('react');
+var BLOCK_SIZE = 60;
 
 module.exports = React.createClass({
 
@@ -16,7 +17,7 @@ module.exports = React.createClass({
     {
         var style = {
             left : this.props.xPosition,
-            top  : this.props.yPosition
+            top  : this.props.yPosition - BLOCK_SIZE
         };
 
         return <div className='block' style={style} />;

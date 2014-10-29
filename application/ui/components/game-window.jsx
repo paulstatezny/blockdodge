@@ -1,12 +1,13 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React              = require('react');
-var Player             = require('./player');
-var Block              = require('./block');
-var GameLoopMixin      = require('./game-loop-mixin');
-var KeyboardInputMixin = require('./keyboard-input-mixin');
-var _                  = require('underscore');
+var React                   = require('react');
+var Player                  = require('./player');
+var Block                   = require('./block');
+var GameLoopMixin           = require('./game-loop-mixin');
+var CollisionDetectionMixin = require('./collision-detection-mixin');
+var KeyboardInputMixin      = require('./keyboard-input-mixin');
+var _                       = require('underscore');
 
 var WINDOW_SIZE = 600;
 
@@ -14,12 +15,12 @@ module.exports = React.createClass({
 
     displayName : 'GameWindow',
 
-    mixins : [GameLoopMixin, KeyboardInputMixin],
+    mixins : [GameLoopMixin, CollisionDetectionMixin, KeyboardInputMixin],
 
     generateBlocks : function()
     {
         return [
-            {x: 300, y: 370},
+            {x: 300, y: 70},
             {x: 200, y: 1200},
             {x: 100, y: 1800},
             {x: 50, y: 2400}
@@ -40,7 +41,6 @@ module.exports = React.createClass({
             if ((self.state.playerYPosition - block.y) > WINDOW_SIZE) {
                 return;
             }
-
 
             blocks.push(
                 <Block
