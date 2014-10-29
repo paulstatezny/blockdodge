@@ -2,7 +2,8 @@
 'use strict';
 
 var React      = require('react');
-var BLOCK_SIZE = 60;
+var BLOCK_SIZE  = 60;
+var WINDOW_SIZE = 600;
 
 module.exports = React.createClass({
 
@@ -15,6 +16,10 @@ module.exports = React.createClass({
 
     render : function()
     {
+        if (this.props.yPosition > (WINDOW_SIZE + BLOCK_SIZE) || this.props.yPosition < 0) {
+            return null;
+        }
+
         var style = {
             left : this.props.xPosition,
             top  : this.props.yPosition - BLOCK_SIZE

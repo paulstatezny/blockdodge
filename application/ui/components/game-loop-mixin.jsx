@@ -4,8 +4,10 @@
 var _         = require('underscore');
 var direction = require('./direction');
 
-var FRAME_LENGTH = 600;
-var MAX_POSITION = 560;
+var FRAME_LENGTH = 30;
+var PLAYER_SIZE  = 40;
+var WINDOW_SIZE  = 600;
+var MAX_POSITION = WINDOW_SIZE - PLAYER_SIZE;
 var XVELOCITY    = 15;
 var YVELOCITY    = 10;
 
@@ -41,9 +43,9 @@ module.exports = {
     {
         var step = 0;
 
-        if (this.state.direction === direction.RIGHT && this.state.playerXPosition < MAX_POSITION) {
+        if (this.state.direction === direction.RIGHT && this.state.playerXPosition + XVELOCITY <= MAX_POSITION) {
             step = XVELOCITY;
-        } else if (this.state.direction === direction.LEFT && this.state.playerXPosition > 0) {
+        } else if (this.state.direction === direction.LEFT && this.state.playerXPosition - XVELOCITY >= 0) {
             step = -XVELOCITY;
         }
 

@@ -7,7 +7,7 @@ var PLAYER_SIZE = 40;
 module.exports = {
     playerCollidedWithABlock : function()
     {
-        var blockPlayerHit = this.playerCollidedWithThisBlock(this.state.blocks[0]); //_.find(this.state.blocks, this.playerCollidedWithThisBlock, this);
+        var blockPlayerHit = _.find(this.state.blocks, this.playerCollidedWithThisBlock, this);
 
         return ! _.isUndefined(blockPlayerHit);
     },

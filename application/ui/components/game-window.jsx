@@ -20,7 +20,7 @@ module.exports = React.createClass({
     generateBlocks : function()
     {
         return [
-            {x: 300, y: 70},
+            {x: 0, y: 0},
             {x: 200, y: 1200},
             {x: 100, y: 1800},
             {x: 50, y: 2400}
@@ -38,10 +38,6 @@ module.exports = React.createClass({
         var self   = this;
 
         _.each(this.state.blocks, function(block, index) {
-            if ((self.state.playerYPosition - block.y) > WINDOW_SIZE) {
-                return;
-            }
-
             blocks.push(
                 <Block
                     key       = {'block-' + index}
