@@ -72,7 +72,10 @@ module.exports = {
 
     startGame : function()
     {
-        this.setState({playing : true});
+        this.setState({
+            playing         : true,
+            playerYPosition : 1
+        });
     },
 
     resetGame : function()

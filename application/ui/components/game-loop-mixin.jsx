@@ -4,14 +4,14 @@
 var _         = require('underscore');
 var direction = require('./direction');
 
-var FRAME_LENGTH = 60;
-var MAX_POSITION = 500;
-var VELOCITY     = 1;
+var FRAME_LENGTH = 30;
+var MAX_POSITION = 700;
+var VELOCITY     = 10;
 
 module.exports = {
-    componentDidUpdate : function()
+    componentDidUpdate : function(prevProps, prevState)
     {
-        if (this.state.playing) {
+        if (this.state.playing === true && prevState.playerYPosition !== this.state.playerYPosition) {
             _.delay(this.incrementFrame, FRAME_LENGTH);
         }
     },
@@ -19,17 +19,22 @@ module.exports = {
     incrementFrame : function()
     {
         this.setState({
-            playerYPosition : this.getNewPlayerPosition(this.state.direction)
+            playerXPosition : this.getNewPlayerPosition(),
+            playerYPosition : this.state.playerYPosition + 1
         });
     },
 
-    getNewPlayerPosition : function(dir)
+    getNewPlayerPosition : function()
     {
-        if (dir === direction.RIGHT && this.state.playerXPosition < MAX_POSITION) {
-            return this.state.playerXPosition + VELOCITY;
-        } else if (dir === direction.LEFT && this.state.playerXPosition > 0) {
-            return this.state.playerXPosition - VELOCITY;
+        var step = 0;
+
+        if (this.state.direction === direction.RIGHT && this.state.playerXPosition < MAX_POSITION) {
+            step = VELOCITY;
+        } else if (this.state.direction === direction.LEFT && this.state.playerXPosition > 0) {
+            step = -VELOCITY;
         }
+
+        return this.state.playerXPosition + step;
     },
 
     getInitialState : function()
