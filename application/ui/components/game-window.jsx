@@ -1,120 +1,18 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React  = require('react');
-var Player = require('./player');
-var Block  = require('./block');
-var _      = require('underscore');
-
-var keys = {
-    LEFT  : 37,
-    RIGHT : 39,
-    SPACE : 32
-};
-
-var validKeys = [37, 39, 32];
-
-var direction = {
-    LEFT  : -1,
-    RIGHT : 1
-};
-
-var VELOCITY     = 1;
-var MAX_POSITION = 500;
-var FRAME_LENGTH = 60;
+var React              = require('react');
+var Player             = require('./player');
+var Block              = require('./block');
+var GameLoopMixin      = require('./game-loop-mixin');
+var KeyboardInputMixin = require('./keyboard-input-mixin');
+var _                  = require('underscore');
 
 module.exports = React.createClass({
 
     displayName : 'GameWindow',
 
-    componentWillMount : function()
-    {
-        document.onkeydown = this.onKeyDown;
-        document.onkeyup   = this.onKeyUp;
-    },
-
-    componentWillUnmount : function()
-    {
-        document.onkeydown = undefined;
-        document.onkeyup   = undefined;
-    },
-
-    onKeyDown : function(e)
-    {
-        e = e || window.event;
-
-        if (! _.contains(validKeys, e.keyCode)) {
-            return;
-        }
-
-        if (e.keyCode === keys.RIGHT && this.state.direction === direction.RIGHT) {
-            return;
-        }
-
-        if (e.keyCode === keys.LEFT && this.state.direction === direction.LEFT) {
-            return;
-        }
-
-        if (e.keyCode === keys.LEFT) {
-            this.setState({
-                direction       : direction.LEFT,
-                playerXPosition : this.getNewPlayerPosition(direction.LEFT)
-            });
-        } else if (e.keyCode === keys.RIGHT) {
-            this.setState({
-                direction       : direction.RIGHT,
-                playerXPosition : this.getNewPlayerPosition(direction.RIGHT)
-            });
-        } else if (e.keyCode === keys.SPACE && this.state.playing === false) {
-            this.setState({playing : true});
-        } else if (e.keyCode === keys.SPACE && this.state.playing === true) {
-            this.setState({playing : false});
-        }
-    },
-
-    onKeyUp : function(e)
-    {
-        e = e || window.event;
-
-        if (! _.contains(validKeys, e.keyCode)) {
-            return;
-        }
-
-        if (e.keyCode === keys.LEFT && this.state.direction === direction.LEFT) {
-            this.setState({direction : null});
-        } else if (e.keyCode === keys.RIGHT && this.state.direction === direction.RIGHT) {
-            this.setState({direction : null});
-        }
-    },
-
-    getNewPlayerPosition : function(dir)
-    {
-        if (dir === direction.RIGHT && this.state.playerXPosition < MAX_POSITION) {
-            return this.state.playerXPosition + VELOCITY;
-        } else if (dir === direction.LEFT && this.state.playerXPosition > 0) {
-            return this.state.playerXPosition - VELOCITY;
-        }
-    },
-
-    getInitialState : function()
-    {
-        return {
-            // Player position (in pixels) across the screen.
-            playerXPosition : 300,
-
-            // Player position (in pixels) ahead of the starting line
-            playerYPosition : 0,
-
-            // Array of blocks
-            blocks : this.generateBlocks(),
-
-            // Whether we are currently playing
-            playing : false,
-
-            // Current direction of player movement
-            direction : null
-        };
-    },
+    mixins : [GameLoopMixin, KeyboardInputMixin],
 
     generateBlocks : function()
     {
@@ -149,24 +47,17 @@ module.exports = React.createClass({
         return blocks;
     },
 
-    incrementFrame : function()
-    {
-        this.setState({
-            playerYPosition : this.getNewPlayerPosition(this.state.direction)
-        });
-    },
-
-    componentDidUpdate : function()
-    {
-        _.delay(this.incrementFrame, FRAME_LENGTH);
-    },
-
     render : function()
     {
         return (
-            <div className='game__window'>
-                {this.renderPlayer()}
-                {this.renderBlocks()}
+            <div>
+                <div className='game__window'>
+                    {this.renderPlayer()}
+                    {this.renderBlocks()}
+                </div>
+                <p>
+                    Playing : {this.state.playing ? 'true' : 'false'}
+                </p>
             </div>
         );
     }
