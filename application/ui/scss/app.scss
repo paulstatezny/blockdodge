@@ -1,0 +1,39 @@
+// vendor imports
+    @import "vendor/reset";
+    @import "../../../node_modules/synfrastructure/scss/global";
+    @import "../../../node_modules/synfrastructure/scss/settings";
+    @import "../../../node_modules/synfrastructure/scss/synfrastructure";
+
+// dependency imports
+    @import "dependencies/colors";
+    @import "dependencies/extends";
+    @import "dependencies/fonts";
+    @import "dependencies/mixins";
+
+// layout
+    @import "layout/base";
+    @import "layout/layout";
+    @import "layout/layout-utilities";
+    @import "layout/z-indexes";
+
+// component imports
+
+    // typography
+    @import "components/typography/headings";
+    @import "components/typography/grouping-elements";
+    @import "components/typography/text-level-elements";
+
+    // buttons
+    @import "components/buttons/buttons";
+
+    //icons
+    @import "components/icons/icons-base";
+
+    // forms
+    @import "components/forms/form-base";
+    @import "components/forms/form-inputs";
+    @import "components/forms/form-labels";
+    @import "components/forms/form-validation";
+
+// pages
+    @import "pages/page-layout";

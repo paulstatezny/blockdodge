@@ -1,0 +1,16 @@
+// vendor imports
+    @import "../../../node_modules/synfrastructure/scss/global";
+    @import "../../../node_modules/synfrastructure/scss/settings";
+    @import "../../../node_modules/synfrastructure/scss/synfrastructure";
+
+// dependency imports
+    @import "style-guide/sg-colors";
+
+// layout imports
+    @import "style-guide/sg-layout";
+
+// component imports
+    @import "style-guide/components/sg-branding";
+    @import "style-guide/components/sg-main-nav";
+    @import "style-guide/components/sg-typography";
+    @import "style-guide/components/sg-icons";

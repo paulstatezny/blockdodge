@@ -1,0 +1,43 @@
+//////////////////////////////
+//      Color Vars          //
+//////////////////////////////
+
+$white   : #fff;
+$black   : #000;
+
+$gray--050 : tint($black, 95%);
+$gray--100 : tint($black, 90%);
+$gray--200 : tint($black, 80%);
+$gray--300 : tint($black, 70%);
+$gray--400 : tint($black, 60%);
+$gray--500 : tint($black, 50%);
+$gray--600 : tint($black, 40%);
+$gray--700 : tint($black, 30%);
+$gray--800 : tint($black, 20%);
+$gray--900 : tint($black, 10%);
+
+// Semantic color vars
+$white : $white;
+$black : $black;
+
+// Thematic grays
+$gray-theme--050 : $gray--050;
+$gray-theme--100 : $gray--100;
+$gray-theme--200 : $gray--200;
+$gray-theme--300 : $gray--300;
+$gray-theme--400 : $gray--400;
+$gray-theme--500 : $gray--500;
+$gray-theme--600 : $gray--600;
+$gray-theme--700 : $gray--700;
+$gray-theme--800 : $gray--800;
+$gray-theme--900 : $gray--900;
+
+// Thematic colors
+$primary   : #25c0d7;
+$secondary : #e88a51;
+$tertiary  : #e8bf51;
+
+// Status colors
+$status--success : #25d785;
+$status--warning : #f27225;
+$status--error   : #ea4626;

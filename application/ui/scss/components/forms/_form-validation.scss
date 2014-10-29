@@ -1,0 +1,141 @@
+// *******************************************
+// *******************************************
+
+    // Form validation components
+
+// *******************************************
+// *******************************************
+
+// <div className='validation [validation--warning validation--success]'>
+//     <label className='label'>[Label]</label>
+//     <div className='input-wrap'>
+//         <input className='input' />
+//     </div>
+//     <span className='validation__msg [validation__msg--warning validation__msg--success]'>
+//         [Messages]
+//     </span>
+// </div>
+
+// container element
+.validation {
+    position : relative;
+}
+
+// let validation container handle bottom margin
+// see _form-inputs.scss
+.validation--visible {
+    margin-bottom : rem-calc(24);
+}
+
+// message elements
+.validation__msg {
+    position      : relative;
+    display       : block;
+    margin        : rem-calc(6 0);
+    padding       : rem-calc(9);
+    font-family   : $sans-bold;
+    font-size     : rem-calc(13);
+    color         : $white;
+    text-shadow   : 1px 1px 0px rgba($black, .1);
+    background    : $status--warning;
+    border-radius : 2px;
+}
+
+// status modifiers
+.validation--error {
+
+    .label {
+        color : $status--error;
+    }
+
+    .input,
+    .textarea {
+        background-color : rgba($status--error, .1);
+        border-color     : $status--error;
+    }
+
+
+    .validation__msg {
+        background : $status--error;
+    }
+
+}
+
+.validation--warning {
+
+    .label {
+        color : $status--warning;
+    }
+
+    .input,
+    .textarea {
+        background-color : rgba($status--warning, .05);
+        border-color     : $status--warning;
+    }
+
+    .validation__msg {
+        background : $status--warning;
+    }
+
+}
+
+.validation--success {
+
+    .label {
+        color : $status--success;
+    }
+
+    .input,
+    .textarea {
+        background-color : rgba($status--success, .05);
+        border-color     : $status--success;
+    }
+
+    .validation__msg {
+        background : $status--success;
+    }
+
+}
+
+// display modifiers
+// positioned over bottom right
+// of triggered input field
+.validation--positioned {
+
+    .validation__msgs {
+        position     : absolute;
+        top          : 100%;
+        right        : 0;
+        width        : auto;
+        margin-top   : rem-calc(-12);
+        margin-right : rem-calc(6);
+    }
+
+    .validation__msg {
+        box-shadow: 2px 2px 0px rgba($black, .15);
+
+        // arrow
+        &::before {
+            content             : '';
+            position            : absolute;
+            right               : rem-calc(15);
+            bottom              : 100%;
+            width               : 0;
+            height              : 0;
+            border              : solid transparent;
+            border-color        : rgba($status--warning, 0);
+            border-bottom-color : $status--warning;
+            border-width        : 10px;
+        }
+
+        &.validation__msg--error::before {
+            border-bottom-color : $status--error;
+        }
+
+        &.validation__msg--success::before {
+            border-bottom-color : $status--success;
+        }
+
+    }
+
+}

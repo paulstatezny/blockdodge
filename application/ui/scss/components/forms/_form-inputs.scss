@@ -1,0 +1,162 @@
+// *******************************************
+// *******************************************
+
+    // Form input components
+
+// *******************************************
+// *******************************************
+
+// @Vars
+// form vars
+$form-font                   : $sans-reg        !default;
+$form-font-color             : $gray-theme--500 !default;
+$form-focus-font-color       : $gray-theme--700 !default;
+$form-placeholder-font-color : $gray-theme--400 !default;
+
+// <div class="input-wrap">
+//  <input class="input" type="text" placeholder="Name" />
+// </div>
+
+// input container element
+.input-wrap {
+    position : relative;
+    margin   : 0 0 rem-calc(24);
+    display  : block;
+
+    // let validation container handle bottom margin
+    // see _form-validation.scss
+    .validation--visible & {
+        margin-bottom : 0;
+    }
+
+}
+
+.input,
+.textarea {
+    width         : 100%;
+    margin        : 0;
+    padding       : rem-calc(15);
+    display       : block;
+    font-family   : $form-font;
+    color         : $form-font-color;
+    border        : 1px solid $gray-theme--300;
+    border-radius : 2px;
+    transition    : color 200ms ease,
+                    background 200ms ease,
+                    border-color 200ms ease;
+
+    -webkit-appearance : none;
+    -moz-appearance    : none;
+
+    &:focus {
+        color        : $form-focus-font-color;
+        background   : $gray-theme--050;
+        border-color : $gray-theme--600;
+        outline      : none;
+        box-shadow   : 0px 0px 4px rgba($black, .25);
+    }
+
+}
+
+.input {
+    height : rem-calc(45);
+}
+
+.textarea {
+    max-width   : 100%;
+    height      : auto;
+    padding     : rem-calc(10);
+    line-height : 1.5;
+}
+
+// style input placeholder
+@include placeholder {
+    font-family : $form-font;
+    color       : $form-placeholder-font-color;
+    opacity     : 1;
+}
+
+.input:-ms-input-placeholder,
+.textarea:-ms-input-placeholder {
+    opacity : .5;
+}
+
+// hide ms validation x
+::-ms-clear {
+    display : none;
+}
+
+::-ms-reveal {
+    display : none;
+}
+
+// select inputs
+.input--select__arrow {
+    position    : absolute;
+    top         : 50%;
+    right       : rem-calc(15);
+    margin-top  : rem-calc(-4.5);
+    line-height : 0;
+
+    .input--select__arrow-icon {
+        width  : rem-calc(9);
+        height : rem-calc(9);
+        fill : $gray-theme--500;
+    }
+
+}
+
+// radio inputs
+.input-wrap--radio,
+.input-wrap--checkbox {
+
+    // label surrounding input element
+    > .label {
+        margin    : 0;
+        padding   : 0;
+        font-size : rem-calc(13);
+        color     : $gray-theme--600 !important;
+    }
+
+}
+
+// input element
+.radio,
+.checkbox {
+    margin : rem-calc(0 9 0 0);
+}
+
+// radio group
+.radio-group,
+.checkbox-group {
+    margin : rem-calc(0 0 24 0);
+
+    // let validation container handle bottom margin
+    // see _form-validation.scss
+    .validation--visible & {
+        margin-bottom : 0;
+    }
+
+    > .input-wrap--radio,
+    > .input-wrap--checkbox {
+        margin  : 0;
+        padding : rem-calc(6 0);
+
+        &:first-of-type {
+            padding-top : 0;
+        }
+
+    }
+
+}
+
+.radio-group--inline,
+.checkbox-group--inline {
+
+    .input-wrap--radio,
+    .input-wrap--checkbox {
+        margin : rem-calc(0 9);
+        display: inline-block;
+    }
+
+}

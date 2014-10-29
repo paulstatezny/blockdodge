@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 0.10.32
+env:
+  - XUNIT_FILE=shippable/testresults/result.xml
+#  global:
+#    - SLACK_ORG=@todo PROJECT=@todo
+#    - secure: @todo
+before_script:
+  - mkdir -p shippable/build
+  - mkdir -p shippable/testresults
+  - npm install -g phantomjs
+script:
+  - ./node_modules/.bin/jshint application
+  - ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS
+  - ./node_modules/.bin/gulp build --env ci
+  - ./node_modules/.bin/gulp disyntegrate:ci --trace
+notifications:
+  email: false
+#after_failure:
+#  - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN

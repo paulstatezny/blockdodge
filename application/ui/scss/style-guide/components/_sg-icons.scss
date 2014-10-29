@@ -1,0 +1,42 @@
+// *******************************************
+// *******************************************
+
+    // Icon formatting for styleguide section
+
+// *******************************************
+// *******************************************
+
+.sg-icons {
+    @include clearfix;
+}
+
+.sg-icon {
+    position   : relative;
+    width      : rem-calc(100);
+    height     : rem-calc(100);
+    margin     : rem-calc(1);
+    display    : inline-block;
+    background : $gray--300;
+    border     : 1px solid $gray--400;
+
+    .icon {
+        position   : absolute;
+        top        : 50%;
+        left       : 50%;
+        margin-top : rem-calc(-6);
+        transform  : translate(-50%, -50%);
+    }
+
+}
+
+.sg-icon__name {
+    position   : absolute;
+    right      : 0;
+    bottom     : 0;
+    left       : 0;
+    padding    : rem-calc(6 3);
+    display    : block;
+    font-size  : rem-calc(11);
+    background : $gray--300;
+    border-top : 1px solid $gray--400;
+}

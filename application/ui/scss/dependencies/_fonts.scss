@@ -1,0 +1,43 @@
+// Source Sans Pro
+// (do not use)
+$source-light : 'source_sans_prolight', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$source       : 'source_sans_proregular', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$source-bold  : 'source_sans_prosemibold', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+//font vars
+$sans-light : $source-light;
+$sans-reg   : $source;
+$sans-bold  : $source-bold;
+
+@font-face {
+    font-family: $source-light;
+    src: url('/fonts/SourceSansPro/sourcesanspro-light-webfont.eot');
+    src: url('/fonts/SourceSansPro/sourcesanspro-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/SourceSansPro/sourcesanspro-light-webfont.woff') format('woff'),
+         url('/fonts/SourceSansPro/sourcesanspro-light-webfont.ttf') format('truetype'),
+         url('/fonts/SourceSansPro/sourcesanspro-light-webfont.svg#source_sans_prolight') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family: $source;
+    src: url('/fonts/SourceSansPro/sourcesanspro-regular-webfont.eot');
+    src: url('/fonts/SourceSansPro/sourcesanspro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/SourceSansPro/sourcesanspro-regular-webfont.woff') format('woff'),
+         url('/fonts/SourceSansPro/sourcesanspro-regular-webfont.ttf') format('truetype'),
+         url('/fonts/SourceSansPro/sourcesanspro-regular-webfont.svg#source_sans_proregular') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family: $source-bold;
+    src: url('/fonts/SourceSansPro/sourcesanspro-semibold-webfont.eot');
+    src: url('/fonts/SourceSansPro/sourcesanspro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/SourceSansPro/sourcesanspro-semibold-webfont.woff') format('woff'),
+         url('/fonts/SourceSansPro/sourcesanspro-semibold-webfont.ttf') format('truetype'),
+         url('/fonts/SourceSansPro/sourcesanspro-semibold-webfont.svg#source_sans_prosemibold') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}

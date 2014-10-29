@@ -1,0 +1,457 @@
+// *******************************************
+// *******************************************
+
+    // Button Styles
+
+// *******************************************
+// *******************************************
+
+// button thematic vars
+$button-font             : $sans-reg !default;
+$button-color            : $white    !default;
+$button-background-color : $primary  !default;
+$button-border-color     : $primary  !default;
+$button-border-width     : 1px       !default;
+$button-border-style     : solid     !default;
+$button-border-radius    : 2px       !default;
+
+// button size vars
+$button-tiny    : rem-calc(7)    !default;
+$button-small   : rem-calc(9)    !default;
+$button-medium  : rem-calc(12)   !default;
+$button-large   : rem-calc(16)   !default;
+$button-default : $button-medium !default;
+
+// button max-width factor
+// used to set a max width as a multiple
+// of the button's font size
+$button-max-width-factor : 10;
+
+// button font size vars
+$button-font-size-tiny    : rem-calc(12)                   !default;
+$button-font-size-small   : rem-calc(14)                   !default;
+$button-font-size-medium  : rem-calc(16)                   !default;
+$button-font-size-large   : rem-calc(18)                   !default;
+$button-font-size-default : $button-font-size-medium       !default;
+$button-text-shadow       : 1px 1px 0px rgba($black, .15)  !default;
+$button-hover-text-shadow : -1px -1px 1px rgba($white, .5) !default;
+
+// button display and spacing vars
+$button-display       : inline-block !default;
+$button-margin-sides  : rem-calc(3)  !default;
+$button-margin-bottom : rem-calc(15) !default;
+
+// set opacity of disabled buttons
+$button-disabled-opacity : .3 !default;
+
+// default buttons
+// <a class="button" href="#">Start Up</a>
+.button {
+    position         : relative;
+    min-width        : $button-font-size-default * $button-max-width-factor;
+    margin           : 0 $button-margin-sides $button-margin-bottom;
+    display          : $button-display;
+    overflow         : hidden;
+    text-align       : center;
+    text-decoration  : none;
+    font-weight      : normal;
+    font-size        : $button-font-size-default;
+    line-height      : 1.5em;
+    font-family      : $button-font;
+    color            : $button-color;
+    text-shadow      : 1px 1px 0px rgba($black, .15);
+    border           : $button-border-width $button-border-style;
+    background-color : $button-background-color;
+    border-color     : $button-background-color;
+    border-radius    : $button-border-radius;
+    box-shadow       : inset 0px 0px 1px rgba($white, .5),
+                       3px 3px 0px rgba($black, .1);
+    cursor           : pointer;
+    transition       : color 300ms ease,
+                       background-color 200ms ease,
+                       border-color 300ms ease;
+
+    &:hover,
+    &:focus {
+        background-color : shade($primary, 10%);
+
+        > * {
+            text-shadow: -1px -1px 0px rgba($black, .15);
+        }
+
+    }
+
+    // normalize buttons, anchors and
+    // direct child elements
+    // inside of button component element
+    > * {
+        position               : relative;
+        z-index                : $stack-top;
+        height                 : auto;
+        width                  : auto;
+        display                : $button-display;
+        margin                 : 0;
+        padding                : $button-medium ($button-medium * 2);
+        overflow               : visible;
+        vertical-align         : baseline;
+        text-align             : center;
+        text-decoration        : none;
+        font-weight            : normal;
+        font-size              : inherit;
+        font-size              : 100%;
+        font-size              : $button-font-size-default;
+        -webkit-font-smoothing : inherit; // very important, button els will look bolder without it
+        line-height            : 1.5em;
+        font-family            : $button-font;
+        color                  : $button-color;
+        text-shadow            : $button-text-shadow;
+        background             : transparent;
+        border                 : 0;
+        border-width           : 0;
+        cursor                 : pointer;
+        -webkit-appearance     : none;
+        -moz-appearance        : none;
+        appearance             : none;
+    }
+
+    // FF proprietary button fix
+    > button::-moz-focus-inner {
+        border  : 0;
+        padding : 0;
+    }
+
+}
+
+// button that inherits the look
+// of the surrounding UI
+.button--inherit {
+    background : transparent;
+    border     : 1px solid transparent;
+    box-shadow : none;
+
+    &:hover,
+    &:focus {
+        text-shadow : $button-hover-text-shadow;
+        background  : $gray-theme--050;
+
+        > * {
+            text-shadow : -1px -1px 1px rgba($white, .5);
+        }
+    }
+
+    > * {
+        color       : $gray-theme--500;
+        text-shadow : none;
+    }
+
+}
+
+// size modifiers
+
+// tiny buttons
+.button--tiny {
+    min-width: $button-font-size-tiny * $button-max-width-factor;
+
+    > * {
+        padding   : $button-tiny ($button-tiny * 2);
+        font-size : $button-font-size-tiny;
+    }
+
+}
+
+// small buttons
+.button--small {
+    min-width : $button-font-size-small * $button-max-width-factor;
+
+    > * {
+        padding   : $button-small ($button-small * 2);
+        font-size : $button-font-size-small;
+    }
+
+}
+
+// medium buttons
+.button--medium {
+    min-width : $button-font-size-medium * $button-max-width-factor;
+
+    > * {
+        padding   : $button-medium ($button-medium * 2);
+        font-size : $button-font-size-medium;
+    }
+
+}
+
+// large buttons
+.button--large {
+    min-width : $button-font-size-large * $button-max-width-factor;
+
+    > * {
+        padding   : $button-large ($button-large * 2);
+        font-size : $button-font-size-large;
+    }
+
+}
+
+.button--auto {
+    min-width : 0;
+}
+
+// display modifiers
+
+// display button as block level element
+.button--block {
+    margin-right : 0;
+    margin-left  : 0;
+    display      : block;
+}
+
+// disabled button display
+.button--disabled,
+.button[disabled] {
+    opacity      : $button-disabled-opacity;
+    cursor       : default;
+
+    > * {
+        cursor : default;
+    }
+
+}
+
+// color modifiers
+.button--secondary {
+    background-color : $secondary;
+    border-color     : $secondary;
+
+    &:before {
+        background : shade($secondary, 10%);
+    }
+
+    &:hover,
+    &:focus {
+        background-color : shade($secondary, 10%);
+    }
+
+}
+
+.button--tertiary {
+    background-color : $tertiary;
+    border-color     : $tertiary;
+
+    &:hover,
+    &:focus {
+        background-color : shade($tertiary, 10%);
+    }
+
+}
+
+// status modifiers
+.button--positive {
+    @extend .button--inherit;
+    text-shadow : none;
+
+    > * {
+        color       : $status--success;
+        text-shadow : none;
+    }
+
+    &:hover,
+    &:focus {
+        background : $status--success;
+
+        > * {
+            color : $white;
+        }
+
+    }
+
+}
+
+.button--warning {
+    @extend .button--inherit;
+    text-shadow : none;
+
+    > * {
+        color       : $status--warning;
+        text-shadow : none;
+    }
+
+    &:hover,
+    &:focus {
+        background : $status--warning;
+
+        > * {
+            color : $white;
+        }
+
+    }
+
+}
+
+.button--warning-alt {
+    @extend .button--inherit;
+
+    > * {
+        color : $status--error;
+    }
+
+    &:hover,
+    &:focus {
+        background : $status--error;
+
+        > * {
+            color : $white;
+        }
+
+    }
+
+}
+
+// split buttons
+// <span className='button--split-right [button--split-left]'>
+//     <a>
+//         {'Split Button'}
+//         <Icon className='button--split__icon' icon='caret' />
+//     </a>
+// </span>
+
+// adjust icon sizes
+.button--split-right,
+.button--split-left {
+    position : relative;
+
+    // icon element that will split the button
+    .button--split__icon {
+        position : absolute;
+        top      : 0;
+        bottom   : 0;
+        width    : rem-calc(50);
+        height   : auto;
+        fill     : $white;
+        filter   : drop-shadow( 1px 1px 0px rgba($black, .25) );
+
+        // position svg element within
+        // icon element
+        > svg {
+            position : absolute;
+            top      : 50%;
+            left     : 50%;
+            width    : rem-calc(20);
+            height   : rem-calc(20);
+            margin   : rem-calc(-10);
+        }
+
+    }
+
+    // size adjustments to icons
+
+    // tiny
+    &.button--tiny {
+
+        .button--split__icon {
+            width : rem-calc(35);
+
+            > svg {
+                width  : rem-calc(10);
+                height : rem-calc(10);
+                margin : rem-calc(-5);
+            }
+
+        }
+
+    }
+
+    // small
+    &.button--small {
+
+        .button--split__icon {
+            width : rem-calc(40);
+
+            > svg {
+                width  : rem-calc(15);
+                height : rem-calc(15);
+                margin : rem-calc(-7.5);
+            }
+
+        }
+
+    }
+
+    // large
+    &.button--large {
+
+        .button--split__icon {
+            width : rem-calc(60);
+
+            > svg {
+                width  : rem-calc(25);
+                height : rem-calc(25);
+                margin : rem-calc(-12.5);
+            }
+
+        }
+
+    }
+
+}
+
+// icon on right
+.button--split-right {
+
+    > * {
+        padding-right : rem-calc(70);
+    }
+
+    .button--split__icon {
+        right : 0;
+    }
+
+    // size adustments to pad out
+    // elements away from icons
+
+    // tiny
+    &.button--tiny > * {
+        padding-right : rem-calc(45);
+    }
+
+     // small
+    &.button--small > * {
+        padding-right : rem-calc(55);
+    }
+
+    // large
+    &.button--large > * {
+        padding-right : rem-calc(80);
+    }
+
+}
+
+// icon on left
+.button--split-left {
+
+    > * {
+        padding-left : rem-calc(70);
+    }
+
+    .button--split__icon {
+        left : 0;
+    }
+
+    // size adustments to pad out
+    // elements away from icons
+
+    // tiny
+    &.button--tiny > * {
+        padding-left : rem-calc(45);
+    }
+
+     // small
+    &.button--small > * {
+        padding-left : rem-calc(55);
+    }
+
+    // large
+    &.button--large > * {
+        padding-left : rem-calc(80);
+    }
+
+}
