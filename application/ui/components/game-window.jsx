@@ -21,6 +21,7 @@ var direction = {
 
 var VELOCITY     = 1;
 var MAX_POSITION = 500;
+var FRAME_LENGTH = 60;
 
 module.exports = React.createClass({
 
@@ -151,8 +152,13 @@ module.exports = React.createClass({
     incrementFrame : function()
     {
         this.setState({
-            playerYPosition : this.state.playerYPosition + 1
+            playerYPosition : this.getNewPlayerPosition(this.state.direction)
         });
+    },
+
+    componentDidUpdate : function()
+    {
+        _.delay(this.incrementFrame, FRAME_LENGTH);
     },
 
     render : function()
