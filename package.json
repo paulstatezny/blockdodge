@@ -23,7 +23,7 @@
     "envify"                       : "3.0.0",
     "es5-shim"                     : "4.0.2",
     "glob"                         : "4.0.5",
-    "gulp"                         : "3.8.7",
+    "gulp"                         : "3.8.9",
     "gulp-autoprefixer"            : "1.0.1",
     "gulp-concat"                  : "2.3.4",
     "gulp-connect"                 : "2.0.6",

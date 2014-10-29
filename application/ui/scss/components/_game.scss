@@ -1,0 +1,58 @@
+// *******************************************
+// *******************************************
+
+    // Game components
+
+// *******************************************
+// *******************************************
+
+// @Vars
+// form vars
+// $form-font                   : $sans-reg        !default;
+// $form-font-color             : $gray-theme--500 !default;
+// $form-focus-font-color       : $gray-theme--700 !default;
+// $form-placeholder-font-color : $gray-theme--400 !default;
+
+// input container element
+.game {
+    position : absolute;
+    top      : 0;
+    bottom   : 0;
+    left     : 0;
+    right    : 0;
+}
+
+.game__window {
+    border           : 1px solid #000;
+    width            : 600px;
+    height           : 600px;
+    margin           : auto;
+    background-color : #d8fbff;
+    position         : relative;
+    box-sizing       : content-box;
+}
+
+.player {
+    display          : block;
+    width            : 40px;
+    height           : 40px;
+    position         : absolute;
+    bottom           : 0px;
+    background-color : #006b2b;
+}
+
+.block {
+    display          : block;
+    width            : 60px;
+    height           : 60px;
+    position         : absolute;
+    background-color : #690000;
+}
+
+.message {
+    position  : absolute;
+    top       : 50%;
+    width     : 100%;
+    text-align: center;
+    font-size : 2em;
+}
