@@ -36,7 +36,7 @@
     width            : 40px;
     height           : 40px;
     position         : absolute;
-    bottom           : 10px;
+    bottom           : 0px;
     background-color : #006b2b;
 }
 
@@ -46,4 +46,12 @@
     height           : 60px;
     position         : absolute;
     background-color : #690000;
+}
+
+.message {
+    position  : absolute;
+    top       : 50%;
+    width     : 100%;
+    text-align: center;
+    font-size : 2em;
 }
