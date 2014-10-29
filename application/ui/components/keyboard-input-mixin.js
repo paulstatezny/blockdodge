@@ -74,6 +74,7 @@ module.exports = {
     {
         this.setState({
             playing         : true,
+            lost            : false,
             playerYPosition : 1
         });
     },

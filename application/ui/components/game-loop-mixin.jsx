@@ -5,8 +5,11 @@ var _         = require('underscore');
 var direction = require('./direction');
 
 var FRAME_LENGTH = 30;
-var MAX_POSITION = 700;
-var VELOCITY     = 10;
+var MAX_POSITION = 560;
+var XVELOCITY    = 15;
+var YVELOCITY    = 10;
+var BLOCK_SIZE   = 60;
+var PLAYER_SIZE  = 40;
 
 module.exports = {
     componentDidUpdate : function(prevProps, prevState)
@@ -18,9 +21,42 @@ module.exports = {
 
     incrementFrame : function()
     {
+        if (this.playerCollidedWithABlock === true) {
+            this.setGameLost();
+        }
+
         this.setState({
             playerXPosition : this.getNewPlayerPosition(),
-            playerYPosition : this.state.playerYPosition + 1
+            playerYPosition : this.state.playerYPosition + YVELOCITY
+        });
+    },
+
+    playerCollidedWithABlock : function()
+    {
+        var blockPlayerHit = _.find(this.state.blocks, this.playerCollidedWithThisBlock, this);
+
+        return ! _.isUndefined(blockPlayerHit);
+    },
+
+    /**
+     * @link https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+     */
+    playerCollidedWithThisBlock : function(block)
+    {
+        if (this.state.playerXPosition < block.x + BLOCK_SIZE &&
+            this.state.playerXPosition + PLAYER_SIZE > block.x &&
+            this.state.playerYPosition < block.y + BLOCK_SIZE &&
+            PLAYER_SIZE + this.state.playerYPosition > block.y) {
+            console.log('collision');
+            return true;
+        }
+    },
+
+    setGameLost : function()
+    {
+        this.setState({
+            playing : false,
+            lost    : true
         });
     },
 
@@ -29,9 +65,9 @@ module.exports = {
         var step = 0;
 
         if (this.state.direction === direction.RIGHT && this.state.playerXPosition < MAX_POSITION) {
-            step = VELOCITY;
+            step = XVELOCITY;
         } else if (this.state.direction === direction.LEFT && this.state.playerXPosition > 0) {
-            step = -VELOCITY;
+            step = -XVELOCITY;
         }
 
         return this.state.playerXPosition + step;
@@ -53,7 +89,10 @@ module.exports = {
             playing : false,
 
             // Current direction of player movement
-            direction : null
+            direction : null,
+
+            // Whether the player just lost the game
+            lost : false
         };
     }
 };

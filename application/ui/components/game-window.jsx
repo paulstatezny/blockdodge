@@ -8,6 +8,8 @@ var GameLoopMixin      = require('./game-loop-mixin');
 var KeyboardInputMixin = require('./keyboard-input-mixin');
 var _                  = require('underscore');
 
+var OFF_SCREEN = 610;
+
 module.exports = React.createClass({
 
     displayName : 'GameWindow',
@@ -35,6 +37,10 @@ module.exports = React.createClass({
         var self   = this;
 
         _.each(this.state.blocks, function(block, index) {
+            if ((self.state.playerYPosition - block.y) > OFF_SCREEN) {
+                return;
+            }
+
             blocks.push(
                 <Block
                     key       = {'block-' + index}
@@ -47,6 +53,19 @@ module.exports = React.createClass({
         return blocks;
     },
 
+    renderMessage : function()
+    {
+        if (this.state.lost === false) {
+            return;
+        }
+
+        return (
+            <span className='message'>
+                You lost the game!
+            </span>
+        );
+    },
+
     render : function()
     {
         return (
@@ -54,6 +73,7 @@ module.exports = React.createClass({
                 <div className='game__window'>
                     {this.renderPlayer()}
                     {this.renderBlocks()}
+                    {this.renderMessage()}
                 </div>
                 <p>
                     Playing : {this.state.playing ? 'true' : 'false'}
