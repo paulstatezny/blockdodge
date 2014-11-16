@@ -22,13 +22,15 @@ module.exports = {
 
     incrementFrame : function(player, blocks)
     {
-        var lost = false;
+        var payload;
 
-        this.dispatch(constants.INCREMENT_FRAME, {
+        payload = {
             player : player,
             blocks : blocks,
-            lost   : lost
-        });
+            lost   : false
+        }
+
+        this.dispatch(constants.INCREMENT_FRAME, payload);
     },
 
     generateHardCodedBlocks : function()
