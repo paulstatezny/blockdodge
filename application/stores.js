@@ -1,9 +1,9 @@
 'use strict';
 
 var RouteStore = require('./store/route');
-var BlockStore = require('./store/block');
+var GameStore = require('./store/game');
 
 module.exports = {
     RouteStore : new RouteStore(),
-    BlockStore : new BlockStore()
+    GameStore  : new GameStore()
 };

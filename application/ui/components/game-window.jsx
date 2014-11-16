@@ -27,7 +27,7 @@ module.exports = React.createClass({
 
     getStateFromFlux : function()
     {
-        return this.getFlux().store('BlockStore').getState();
+        return this.getFlux().store('GameStore').getState();
     },
 
     renderPlayer : function()

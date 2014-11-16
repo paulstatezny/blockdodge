@@ -3,7 +3,7 @@
 var Fluxxor   = require('fluxxor');
 var constants = require('../constants');
 
-var BlockStore = Fluxxor.createStore({
+var GameStore = Fluxxor.createStore({
     initialize : function()
     {
         this.blocks  = [];
@@ -52,3 +52,5 @@ var BlockStore = Fluxxor.createStore({
         };
     }
 });
+
+module.exports = GameStore;
