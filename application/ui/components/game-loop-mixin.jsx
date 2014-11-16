@@ -55,12 +55,6 @@ module.exports = {
     getInitialState : function()
     {
         return {
-            // Player position (in pixels) across the screen.
-            playerXPosition : 300,
-
-            // Player position (in pixels) ahead of the starting line
-            playerYPosition : 0,
-
             // Whether we are currently playing
             playing : false,
 

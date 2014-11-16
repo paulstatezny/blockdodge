@@ -3,21 +3,20 @@
 var constants = require('../constants');
 
 module.exports = {
-    generateBlocks : function()
+    reset : function()
     {
-        var blocks = this.generateHardCodedBlocks();
+        var player, blocks, payload;
 
-        this.dispatch(constants.GENERATE_BLOCKS, blocks);
-    },
+        player = this.getInitialPlayer();
+        blocks = this.generateHardCodedBlocks();
 
-    resetPlayer : function()
-    {
-        var player = {
-            x : 300,
-            y : 0
+        payload = {
+            player : player,
+            blocks : blocks,
+            lost   : false
         };
 
-        this.dispatch(constants.RESET_PLAYER, player);
+        this.dispatch(constants.RESET_GAME, player);
     },
 
     incrementFrame : function(player, blocks)
@@ -28,9 +27,14 @@ module.exports = {
             player : player,
             blocks : blocks,
             lost   : false
-        }
+        };
 
         this.dispatch(constants.INCREMENT_FRAME, payload);
+    },
+
+    togglePause : function()
+    {
+        this.dispatch(constants.TOGGLE_PAUSE);
     },
 
     generateHardCodedBlocks : function()
@@ -41,5 +45,13 @@ module.exports = {
             {x: 100, y: 1800},
             {x: 50, y: 2400}
         ];
+    },
+
+    getInitialPlayer : function()
+    {
+        return {
+            x : 300,
+            y : 0
+        };
     }
 };

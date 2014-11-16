@@ -27,16 +27,12 @@ module.exports = React.createClass({
 
     getStateFromFlux : function()
     {
-        var blocks = this.getFlux().store('BlockStore').getBlocks();
-
-        return {
-            blocks : blocks
-        };
+        return this.getFlux().store('BlockStore').getState();
     },
 
     renderPlayer : function()
     {
-        return <Player position={this.state.playerXPosition} />;
+        return <Player position={this.state.player.x} />;
     },
 
     renderBlocks : function()
@@ -49,7 +45,7 @@ module.exports = React.createClass({
                 <Block
                     key       = {'block-' + index}
                     xPosition = {block.x}
-                    yPosition = {self.state.playerYPosition - block.y + WINDOW_SIZE}
+                    yPosition = {self.state.player.y - block.y + WINDOW_SIZE}
                 />
             );
         });
