@@ -20,6 +20,17 @@ module.exports = {
         this.dispatch(constants.RESET_PLAYER, player);
     },
 
+    incrementFrame : function(player, blocks)
+    {
+        var lost = false;
+
+        this.dispatch(constants.INCREMENT_FRAME, {
+            player : player,
+            blocks : blocks,
+            lost   : lost
+        });
+    },
+
     generateHardCodedBlocks : function()
     {
         return [
