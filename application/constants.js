@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
-    NAVIGATE : 'NAVIGATE',
-    FORWARD  : 'FORWARD'
+    FORWARD         : 'FORWARD',
+    GENERATE_BLOCKS : 'GENERATE_BLOCKS',
+    NAVIGATE        : 'NAVIGATE'
 };

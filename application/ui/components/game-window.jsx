@@ -17,14 +17,21 @@ module.exports = React.createClass({
 
     mixins : [GameLoopMixin, CollisionDetectionMixin, KeyboardInputMixin],
 
-    generateBlocks : function()
+    componentDidMount : function()
     {
-        return [
-            {x: 0, y: 0},
-            {x: 200, y: 1200},
-            {x: 100, y: 1800},
-            {x: 50, y: 2400}
-        ];
+        var game = this.getFlux().actions.game;
+
+        game.resetPlayer();
+        game.generateBlocks();
+    },
+
+    getStateFromFlux : function()
+    {
+        var blocks = this.getFlux().store('BlockStore').getBlocks();
+
+        return {
+            blocks : blocks
+        };
     },
 
     renderPlayer : function()

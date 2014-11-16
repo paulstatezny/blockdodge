@@ -61,9 +61,6 @@ module.exports = {
             // Player position (in pixels) ahead of the starting line
             playerYPosition : 0,
 
-            // Array of blocks
-            blocks : this.generateBlocks(),
-
             // Whether we are currently playing
             playing : false,
 
