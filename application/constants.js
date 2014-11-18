@@ -20,7 +20,7 @@ module.exports = {
 
     // Constants with meaningful values
     BLOCK_SIZE      : 60,
-    FRAME_LENGTH    : 30,
+    FRAME_LENGTH    : 20,
     INITIAL_PLAYER  : INITIAL_PLAYER,
     LEFT            : 1,
     MAX_POSITION    : WINDOW_SIZE - PLAYER_SIZE,

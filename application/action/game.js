@@ -7,15 +7,15 @@ var collisionDetection = require('../util/collision-detection');
 var generateHardCodedBlocks = function() {
     return [
         {x: 400, y: 380},
-        {x: 200, y: 800},
-        {x: 100, y: 1800},
-        {x: 50, y: 2400},
-        {x: 360, y: 2800},
-        {x: 260, y: 3200},
-        {x: 160, y: 3600},
-        {x: 260, y: 4000},
-        {x: 360, y: 4400},
-        {x: 160, y: 4600}
+        {x: 200, y: 500},
+        {x: 100, y: 800},
+        {x: 50, y: 950},
+        {x: 360, y: 1200},
+        {x: 260, y: 1350},
+        {x: 160, y: 1550},
+        {x: 260, y: 1800},
+        {x: 360, y: 1900},
+        {x: 160, y: 2100}
     ];
 };
 
