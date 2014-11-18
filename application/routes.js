@@ -6,10 +6,9 @@ var flux   = require('./flux');
 var Route  = require('react-router').Route;
 var Routes = require('react-router').Routes;
 
-var SiteLayout       = require('./ui/layouts/site');
-var HomePage         = require('./ui/pages/home');
-var StyleGuidePage   = require('./ui/pages/style-guide');
-var NotFoundPage     = require('./ui/pages/404');
+var SiteLayout   = require('./ui/layouts/site');
+var HomePage     = require('./ui/pages/home');
+var NotFoundPage = require('./ui/pages/404');
 
 var props = function(name, path, handler, props)
 {
@@ -27,14 +26,7 @@ var getEnvironmentDependentRoutes = function()
     var routes = [];
 
     if (__ENVIRONMENT__ !== 'production') {
-        routes = routes.concat([
-            Route(
-                props('style-guide', '/style-guide', StyleGuidePage, {key : 'style-guide'})
-            ),
-            Route(
-                props('style-guide-section', '/style-guide/:section', StyleGuidePage, {key : 'style-guide-section'})
-            )
-        ]);
+        routes = routes.concat([]);
     }
 
     return routes;

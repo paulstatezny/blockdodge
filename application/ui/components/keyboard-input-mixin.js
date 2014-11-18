@@ -1,7 +1,8 @@
+/* global window, document */
 'use strict';
 
 var _         = require('underscore');
-var direction = require('./direction');
+var constants = require('../../constants');
 
 var keys = {
     LEFT  : 37,
@@ -26,68 +27,75 @@ module.exports = {
 
     onKeyDown : function(e)
     {
+        var game = this.getFlux().actions.game;
+
         e = e || window.event;
 
-        if (! _.contains(validKeys, e.keyCode)) {
-            return;
-        }
-
-        if (e.keyCode === keys.RIGHT && this.state.direction === direction.RIGHT) {
-            return;
-        }
-
-        if (e.keyCode === keys.LEFT && this.state.direction === direction.LEFT) {
+        if (this.ignoreKeyDown(e.keyCode)) {
             return;
         }
 
         if (e.keyCode === keys.SPACE && this.state.playing === false) {
-            this.startGame();
+            game.start();
         } else if (e.keyCode === keys.SPACE && this.state.playing === true) {
-            this.resetGame();
+            game.togglePause();
         } else if (this.state.playing === false) {
             return;
         }
 
-        if (e.keyCode === keys.LEFT) {
-            this.setDirection(direction.LEFT);
-        } else if (e.keyCode === keys.RIGHT) {
-            this.setDirection(direction.RIGHT);
-        }
+        this.handleArrowKeysDown(e.keyCode);
     },
 
     onKeyUp : function(e)
     {
+        var game = this.getFlux().actions.game;
+
         e = e || window.event;
 
         if (! _.contains(validKeys, e.keyCode)) {
             return;
         }
 
-        if (e.keyCode === keys.LEFT && this.state.direction === direction.LEFT) {
-            this.setDirection(null);
-        } else if (e.keyCode === keys.RIGHT && this.state.direction === direction.RIGHT) {
-            this.setDirection(null);
+        if (e.keyCode === keys.LEFT && this.state.direction === constants.LEFT) {
+            game.setDirection(null);
+        } else if (e.keyCode === keys.RIGHT && this.state.direction === constants.RIGHT) {
+            game.setDirection(null);
         }
     },
 
-    startGame : function()
+    /**
+     * Whether to ignore a keydown action, based on whether it contains information
+     * that we care about
+     *
+     * @return {Boolean}
+     */
+    ignoreKeyDown : function(keyCode)
     {
-        this.setState({
-            playing         : true,
-            lost            : false,
-            playerYPosition : 1
-        });
+        var direction = this.state.direction;
+
+        if (! _.contains(validKeys, keyCode)) {
+            return true;
+        }
+
+        if (keyCode === keys.RIGHT && direction === constants.RIGHT) {
+            return true;
+        }
+
+        if (keyCode === keys.LEFT && direction === constants.LEFT) {
+            return true;
+        }
+
+        return false;
     },
 
-    resetGame : function()
+    handleArrowKeysDown : function(keyCode)
     {
-        this.setState(this.getInitialState());
-    },
+        var game = this.getFlux().actions.game;
 
-    setDirection : function (direction)
-    {
-        this.setState({
-            direction : direction
-        });
+        if (keyCode === keys.LEFT) {
+            game.setDirection(constants.LEFT);
+        } else if (keyCode === keys.RIGHT) {
+            game.setDirection(constants.RIGHT);
+        }
     }
 };

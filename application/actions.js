@@ -1,7 +1,9 @@
 'use strict';
 
 var routeActions = require('./action/route');
+var gameActions  = require('./action/game');
 
 module.exports = {
-    route : routeActions
+    route : routeActions,
+    game  : gameActions
 };

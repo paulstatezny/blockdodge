@@ -1,35 +1,43 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React                   = require('react');
-var Player                  = require('./player');
-var Block                   = require('./block');
-var GameLoopMixin           = require('./game-loop-mixin');
-var CollisionDetectionMixin = require('./collision-detection-mixin');
-var KeyboardInputMixin      = require('./keyboard-input-mixin');
-var _                       = require('underscore');
-
-var WINDOW_SIZE = 600;
+var React              = require('react');
+var Fluxxor            = require('fluxxor');
+var FluxChildMixin     = Fluxxor.FluxChildMixin(React);
+var StoreWatchMixin    = Fluxxor.StoreWatchMixin;
+var Player             = require('./player');
+var Block              = require('./block');
+var GameLoopMixin      = require('./game-loop-mixin');
+var KeyboardInputMixin = require('./keyboard-input-mixin');
+var _                  = require('underscore');
+var constants          = require('../../constants');
 
 module.exports = React.createClass({
 
     displayName : 'GameWindow',
 
-    mixins : [GameLoopMixin, CollisionDetectionMixin, KeyboardInputMixin],
+    mixins : [
+        GameLoopMixin,
+        KeyboardInputMixin,
+        FluxChildMixin,
+        StoreWatchMixin('GameStore')
+    ],
 
-    generateBlocks : function()
+    componentDidMount : function()
     {
-        return [
-            {x: 0, y: 0},
-            {x: 200, y: 1200},
-            {x: 100, y: 1800},
-            {x: 50, y: 2400}
-        ];
+        var game = this.getFlux().actions.game;
+
+        game.reset();
+    },
+
+    getStateFromFlux : function()
+    {
+        return this.getFlux().store('GameStore').getState();
     },
 
     renderPlayer : function()
     {
-        return <Player position={this.state.playerXPosition} />;
+        return <Player position={this.state.player.x} />;
     },
 
     renderBlocks : function()
@@ -42,7 +50,7 @@ module.exports = React.createClass({
                 <Block
                     key       = {'block-' + index}
                     xPosition = {block.x}
-                    yPosition = {self.state.playerYPosition - block.y + WINDOW_SIZE}
+                    yPosition = {self.state.player.y - block.y + constants.WINDOW_SIZE}
                 />
             );
         });
@@ -52,15 +60,19 @@ module.exports = React.createClass({
 
     renderMessage : function()
     {
-        if (this.state.lost === false) {
+        var message;
+
+        if (this.state.lost === true) {
+            message = 'You lost the game!';
+        } else if (this.state.won === true) {
+            message = 'You won the game!';
+        }
+
+        if (! message) {
             return;
         }
 
-        return (
-            <span className='message'>
-                You lost the game!
-            </span>
-        );
+        return <span className='message'>{message}</span>;
     },
 
     render : function()
