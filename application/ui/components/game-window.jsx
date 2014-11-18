@@ -2,6 +2,9 @@
 'use strict';
 
 var React                   = require('react');
+var Fluxxor                 = require('fluxxor');
+var FluxChildMixin          = Fluxxor.FluxChildMixin(React);
+var StoreWatchMixin         = Fluxxor.StoreWatchMixin;
 var Player                  = require('./player');
 var Block                   = require('./block');
 var GameLoopMixin           = require('./game-loop-mixin');
@@ -15,14 +18,19 @@ module.exports = React.createClass({
 
     displayName : 'GameWindow',
 
-    mixins : [GameLoopMixin, CollisionDetectionMixin, KeyboardInputMixin],
+    mixins : [
+        GameLoopMixin,
+        CollisionDetectionMixin,
+        KeyboardInputMixin,
+        FluxChildMixin,
+        StoreWatchMixin('GameStore')
+    ],
 
     componentDidMount : function()
     {
         var game = this.getFlux().actions.game;
 
-        game.resetPlayer();
-        game.generateBlocks();
+        game.reset();
     },
 
     getStateFromFlux : function()

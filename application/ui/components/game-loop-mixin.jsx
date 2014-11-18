@@ -59,10 +59,7 @@ module.exports = {
             playing : false,
 
             // Current direction of player movement
-            direction : null,
-
-            // Whether the player just lost the game
-            lost : false
+            direction : null
         };
     }
 };
