@@ -55,7 +55,8 @@ var GameStore = Fluxxor.createStore({
 
     onStartGame : function()
     {
-        this.playing = true;
+        this.playing  = true;
+        this.player.y = 0;
 
         this.emit('change');
     },

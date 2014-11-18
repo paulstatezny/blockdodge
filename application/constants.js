@@ -4,7 +4,7 @@ var WINDOW_SIZE    = 600;
 var PLAYER_SIZE    = 40;
 var INITIAL_PLAYER = {
     x : 300,
-    y : 1
+    y : 0
 };
 
 
