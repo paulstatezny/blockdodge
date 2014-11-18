@@ -16,6 +16,7 @@ module.exports = {
     RESET_GAME      : 'RESET_GAME',
     SET_DIRECTION   : 'SET_DIRECTION',
     START_GAME      : 'START_GAME',
+    TOGGLE_PAUSE    : 'TOGGLE_PAUSE',
 
     // Constants with meaningful values
     BLOCK_SIZE      : 60,

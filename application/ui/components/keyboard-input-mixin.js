@@ -2,7 +2,6 @@
 'use strict';
 
 var _         = require('underscore');
-var direction = require('./direction');
 var constants = require('../../constants');
 
 var keys = {
@@ -39,7 +38,7 @@ module.exports = {
         if (e.keyCode === keys.SPACE && this.state.playing === false) {
             game.start();
         } else if (e.keyCode === keys.SPACE && this.state.playing === true) {
-            game.reset();
+            game.togglePause();
         } else if (this.state.playing === false) {
             return;
         }
@@ -57,9 +56,9 @@ module.exports = {
             return;
         }
 
-        if (e.keyCode === keys.LEFT && this.state.direction === direction.LEFT) {
+        if (e.keyCode === keys.LEFT && this.state.direction === constants.LEFT) {
             game.setDirection(null);
-        } else if (e.keyCode === keys.RIGHT && this.state.direction === direction.RIGHT) {
+        } else if (e.keyCode === keys.RIGHT && this.state.direction === constants.RIGHT) {
             game.setDirection(null);
         }
     },
