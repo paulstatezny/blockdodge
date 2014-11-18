@@ -31,5 +31,4 @@ module.exports = {
 
         return notRight && notLeft && notAbove && notBelow;
     }
-
 };

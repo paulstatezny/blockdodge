@@ -7,7 +7,7 @@ var collisionDetection = require('../util/collision-detection');
 var generateHardCodedBlocks = function() {
     return [
         {x: 400, y: 380},
-        {x: 200, y: 1200},
+        {x: 200, y: 800},
         {x: 100, y: 1800},
         {x: 50, y: 2400},
         {x: 360, y: 2800},
@@ -36,16 +36,29 @@ module.exports = {
 
     incrementFrame : function(player, blocks, direction)
     {
-        var payload, lost;
+        var payload, lost, blocksAhead;
 
         player = playerMovement.getNewPosition(player, direction);
         lost   = collisionDetection.playerCollidedWithABlock(player, blocks);
+
+        blocksAhead = blocks.reduce(function (oneOrMoreAhead, block) {
+            if (oneOrMoreAhead) {
+                return true;
+            }
+
+            if (block.y + constants.BLOCK_SIZE > player.y) {
+                return true;
+            }
+
+            return false;
+        }, false);
 
         payload = {
             player  : player,
             blocks  : blocks,
             lost    : lost,
-            playing : ! lost
+            playing : blocksAhead && ! lost,
+            won     : ! blocksAhead
         };
 
         this.dispatch(constants.INCREMENT_FRAME, payload);

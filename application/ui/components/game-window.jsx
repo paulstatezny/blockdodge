@@ -60,15 +60,19 @@ module.exports = React.createClass({
 
     renderMessage : function()
     {
-        if (this.state.lost === false) {
+        var message;
+
+        if (this.state.lost === true) {
+            message = 'You lost the game!';
+        } else if (this.state.won === true) {
+            message = 'You won the game!';
+        }
+
+        if (! message) {
             return;
         }
 
-        return (
-            <span className='message'>
-                You lost the game!
-            </span>
-        );
+        return <span className='message'>{message}</span>;
     },
 
     render : function()

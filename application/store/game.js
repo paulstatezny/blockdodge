@@ -36,6 +36,7 @@ var GameStore = Fluxxor.createStore({
         this.blocks  = payload.blocks;
         this.lost    = payload.lost;
         this.playing = payload.playing;
+        this.won     = payload.won;
 
         this.emit('change');
     },
@@ -69,7 +70,8 @@ var GameStore = Fluxxor.createStore({
             direction : this.direction,
             lost      : this.lost,
             player    : this.player,
-            playing   : this.playing
+            playing   : this.playing,
+            won       : this.won
         };
     }
 });
