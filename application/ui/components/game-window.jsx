@@ -10,8 +10,7 @@ var Block              = require('./block');
 var GameLoopMixin      = require('./game-loop-mixin');
 var KeyboardInputMixin = require('./keyboard-input-mixin');
 var _                  = require('underscore');
-
-var WINDOW_SIZE = 600;
+var constants          = require('../../constants');
 
 module.exports = React.createClass({
 
@@ -51,7 +50,7 @@ module.exports = React.createClass({
                 <Block
                     key       = {'block-' + index}
                     xPosition = {block.x}
-                    yPosition = {self.state.player.y - block.y + WINDOW_SIZE}
+                    yPosition = {self.state.player.y - block.y + constants.WINDOW_SIZE}
                 />
             );
         });

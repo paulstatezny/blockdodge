@@ -32,9 +32,10 @@ var GameStore = Fluxxor.createStore({
 
     onIncrementFrame : function(payload)
     {
-        this.player = payload.player;
-        this.blocks = payload.blocks;
-        this.lost   = payload.lost;
+        this.player  = payload.player;
+        this.blocks  = payload.blocks;
+        this.lost    = payload.lost;
+        this.playing = payload.playing;
 
         this.emit('change');
     },
