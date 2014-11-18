@@ -1,16 +1,15 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React                   = require('react');
-var Fluxxor                 = require('fluxxor');
-var FluxChildMixin          = Fluxxor.FluxChildMixin(React);
-var StoreWatchMixin         = Fluxxor.StoreWatchMixin;
-var Player                  = require('./player');
-var Block                   = require('./block');
-var GameLoopMixin           = require('./game-loop-mixin');
-var CollisionDetectionMixin = require('./collision-detection-mixin');
-var KeyboardInputMixin      = require('./keyboard-input-mixin');
-var _                       = require('underscore');
+var React              = require('react');
+var Fluxxor            = require('fluxxor');
+var FluxChildMixin     = Fluxxor.FluxChildMixin(React);
+var StoreWatchMixin    = Fluxxor.StoreWatchMixin;
+var Player             = require('./player');
+var Block              = require('./block');
+var GameLoopMixin      = require('./game-loop-mixin');
+var KeyboardInputMixin = require('./keyboard-input-mixin');
+var _                  = require('underscore');
 
 var WINDOW_SIZE = 600;
 
@@ -20,7 +19,6 @@ module.exports = React.createClass({
 
     mixins : [
         GameLoopMixin,
-        CollisionDetectionMixin,
         KeyboardInputMixin,
         FluxChildMixin,
         StoreWatchMixin('GameStore')

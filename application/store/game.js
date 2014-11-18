@@ -6,15 +6,18 @@ var constants = require('../constants');
 var GameStore = Fluxxor.createStore({
     initialize : function()
     {
-        this.blocks  = [];
-        this.player  = {};
-        this.lost    = false;
-        this.playing = false;
+        this.blocks    = [];
+        this.player    = {};
+        this.lost      = false;
+        this.playing   = false;
+        this.direction = null;
 
         this.bindActions(
             constants.RESET_GAME, 'onResetGame',
             constants.INCREMENT_FRAME, 'onIncrementFrame',
-            constants.TOGGLE_PAUSE, 'onTogglePause'
+            constants.TOGGLE_PAUSE, 'onTogglePause',
+            constants.SET_DIRECTION, 'onSetDirection',
+            constants.START_GAME, 'onStartGame'
         );
     },
 
@@ -43,12 +46,28 @@ var GameStore = Fluxxor.createStore({
         this.emit('change');
     },
 
+    onSetDirection : function(direction)
+    {
+        this.direction = direction;
+
+        this.emit('change');
+    },
+
+    onStartGame : function()
+    {
+        this.playing = true;
+
+        this.emit('change');
+    },
+
     getState : function()
     {
         return {
-            blocks : this.blocks,
-            player : this.player,
-            lost   : this.lost
+            blocks    : this.blocks,
+            direction : this.direction,
+            lost      : this.lost,
+            player    : this.player,
+            playing   : this.playing
         };
     }
 });

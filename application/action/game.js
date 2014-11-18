@@ -1,6 +1,8 @@
 'use strict';
 
-var constants = require('../constants');
+var constants          = require('../constants');
+var playerMovement     = require('../util/player-movement');
+var collisionDetection = require('../util/collision-detection');
 
 var generateHardCodedBlocks = function() {
     return [
@@ -21,14 +23,23 @@ module.exports = {
         });
     },
 
-    incrementFrame : function(player, blocks)
+    start : function()
     {
-        var payload;
+        this.dispatch(constants.START_GAME);
+    },
+
+    incrementFrame : function(player, blocks, direction)
+    {
+        var payload, lost;
+
+        player = playerMovement.getNewPosition(player, direction);
+        lost   = collisionDetection.playerCollidedWithABlock(player, blocks);
 
         payload = {
-            player : player,
-            blocks : blocks,
-            lost   : false
+            player  : player,
+            blocks  : blocks,
+            lost    : lost,
+            playing : ! lost
         };
 
         this.dispatch(constants.INCREMENT_FRAME, payload);
@@ -39,11 +50,8 @@ module.exports = {
         this.dispatch(constants.TOGGLE_PAUSE);
     },
 
-    getInitialPlayer : function()
+    setDirection : function(direction)
     {
-        return {
-            x : 300,
-            y : 0
-        };
+        this.dispatch(constants.SET_DIRECTION, direction);
     }
 };
